@@ -1,0 +1,22 @@
+#/etc/xdg/openbox/
+DISPLAY=:0 xdotool getactivewindow key F5
+
+# stop veille/économie dénergie
+xset dpms 0 0 0 && xset s noblank  && xset s off
+
+#Touches pour sortir du serveur X =>  CTRL-ATL-Backspace
+setxkbmap -option terminate:ctrl_alt_bksp
+
+sed -i 's/"exited_cleanly":false/"exited_cleanly":true/' ~/.config/chromium/Default/Preferences
+sed -i 's/"exit_type":"Crashed"/"exit_type":"Normal"/' ~/.config/chromium/Default/Preferences
+
+# vidage du cache chromium
+rm -fr /home/sysop/.cache/chromium
+rm -fr /home/sysop/.config/chromium/Default/
+
+# orientation de l'écran
+xrandr --output DSI-1 --rotate right
+
+# lance chromium avec un user agent spécifique hostname,password,periph,ip (provenant en partie de .chromium_env)
+cd /home/sysop/serveurNfcNodeJsVma405/
+node serveur_nfc.js 

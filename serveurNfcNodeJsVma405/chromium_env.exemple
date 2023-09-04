@@ -1,0 +1,16 @@
+#cp chromium_env.exemple .chromium_env
+
+#utilisateur
+hostname = __hostname__
+
+#front
+front_type = __frontType__
+
+#url du serveur
+url = __protocole__://__serveur__/wv/login_hardware
+
+#mode_nfc = NFCMO
+mode_nfc = NFCLO
+
+password = __mdp__
+token = __token__
