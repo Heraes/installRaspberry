@@ -26,9 +26,13 @@ modifier le fichier confansible.ini :
   Pi10P ansible_user=sysop hostname=pi10P token=L€T0Ken password=ToChoseButNotTOTO;) frontType=FPI serveur=demo.cashless.tibillet.re protocole=https nfc=acr122u-u9 rotate=3
 
 Sur le poste ansible à la racine du projet :
+
 Pour un 7PoucesHdmi :
+
 ansible-playbook -i confansible.ini 7PoucesHdmi.yml -K 
+
 Pour un 10PoucesHdmi :
+
 ansible-playbook -i confansible.ini 10PoucesHdmi.yml -K  
 
 
