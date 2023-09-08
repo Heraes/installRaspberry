@@ -1,5 +1,5 @@
 ---
-- hosts: tibilletPi2
+- hosts: Pi7P
   remote_user: sysop
   become: yes
   tasks:
@@ -78,18 +78,49 @@
         cmd: cp /home/sysop/autostart /etc/xdg/openbox/autostart
 
 
-    - name: Configuration de config.txt et de xorg si rotate = 1
+#    config de l ecran
+    - name: Création du dossier repos "LCD-show"
+      file:
+        path: /home/sysop/LCD-show
+        state: directory
+        mode: '0775'
+
+    - name: Rapatrier le driver de l'écran
+      git:
+        repo: https://github.com/goodtft/LCD-show.git
+        dest: /home/sysop/LCD-show/
+        clone: yes
+        update: no
+
+    - name: Configuration écran 1024x600 pixels!
+      replace:
+        path: /home/sysop/LCD-show/LCD7C-show
+        regexp: '^sudo reboot$'
+        replace: '#remove reboot'
+
+
+    - name: Rendre exécutable le fichier de configuration 1024x600
+      shell: |
+        chmod +x LCD7C-show
+        ./LCD7C-show
+        echo "hdmi:capacity:7C-1024x600:0:1024:600" > /root/.have_installed        
+      args:
+        chdir: /home/sysop/LCD-show/
+
+
+
+
+    - name: Configuration de xorg en fonction rotate = 
       shell: |
         sed -i '/Option "CalibrationMatrix"/c        Option "CalibrationMatrix" "0 1 0 -1 0 1 0 0 1"' /etc/X11/xorg.conf.d/40-libinput.conf
-        when: rotate == 1
+      when: rotate == 1
       shell: | 
         sed -i '/Option "CalibrationMatrix"/c        Option "CalibrationMatrix" "0 -1 1 1 0 0 0 0 1"' /etc/X11/xorg.conf.d/40-libinput.conf
-        when: rotate == 3
+      when: rotate == 3
 
     - name: Configuration de config.txt
       shell: |
-#        echo "display_rotate={{ rotate }}" >> /boot/config.txt 
-        echo "display_hdmi_rotate={{ rotate }}" >> /boot/config.txt        
+        echo "display_rotate={{ rotate }}" >> /boot/config.txt       
       
 
 ### Cas NFC USB
@@ -186,8 +217,8 @@
     - name: décompresser le fichier serveurNfc.7z
       shell: |
         7z x serveurNfc.7z
-        chmod -R 774 serveurNfc
-        chown -R root:sysop  serveurNfc        
+        chmod -R 774 serveurNfcNodeJsVma405
+        chown -R root:sysop  serveurNfcNodeJsVma405         
       args:
         chdir: /home/sysop/
 #      when: nfc == 'acr122u-u9'
@@ -196,16 +227,16 @@
       shell:
         cmd: npm i
       args:
-        chdir: /home/sysop/serveurNfc/
+        chdir: /home/sysop/serveurNfcNodeJsVma405/
 #      when: nfc == 'acr122u-u9'
 
     - name: Maj .chromium_env
       shell: |
-        sed -i "/^hostname = */c hostname = {{ hostname }}" /home/sysop/serveurNfc/.chromium_env
-        sed -i "/^front_type = */c front_type = {{ frontType }}" /home/sysop/serveurNfc/.chromium_env
-        sed -i "/^password = */c password = {{ password }}" /home/sysop/serveurNfc/.chromium_env
-        sed -i "/^token = */c token = {{ token }}" /home/sysop/serveurNfc/.chromium_env
-        sed -i "/^url = */c url = {{ protocole }}://{{ serveur }}/wv/login_hardware" /home/sysop/serveurNfc/.chromium_env        
+        sed -i "/^hostname = */c hostname = {{ hostname }}" /home/sysop/serveurNfcNodeJsVma405/.chromium_env
+        sed -i "/^front_type = */c front_type = {{ frontType }}" /home/sysop/serveurNfcNodeJsVma405/.chromium_env
+        sed -i "/^password = */c password = {{ password }}" /home/sysop/serveurNfcNodeJsVma405/.chromium_env
+        sed -i "/^token = */c token = {{ token }}" /home/sysop/serveurNfcNodeJsVma405/.chromium_env
+        sed -i "/^url = */c url = {{ protocole }}://{{ serveur }}/wv/login_hardware" /home/sysop/serveurNfcNodeJsVma405/.chromium_env        
  #     when: nfc == 'acr122u-u9'
 
 
