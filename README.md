@@ -3,7 +3,7 @@ Installation Cashless sur Raspberry
 ## Prérequis 
 Sur le Pi : 
   PI OS Lite LEGACY
-  Utilisateur = sysop
+  Utilisateur = sysop ( important pour l'execution du script )
   Connection reseau Wifi ou RJ45
   SSH activé
 Sur un Linux ou Mac ( pas de Windows )
