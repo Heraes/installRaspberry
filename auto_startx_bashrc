@@ -1,0 +1,9 @@
+#! /bin/bash
+if grep "#modif bashrc = ok" /home/sysop/.bashrc > /dev/null
+then
+ echo 'bashrc déjà modifié pour auto startx !'
+else
+ sudo echo 'export TYPE_SERVEUR_NFC=VMA405' >> /home/sysop/.bashrc
+ sudo echo '#modif bashrc = ok' >> /home/sysop/.bashrc
+ sudo echo '[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && startx -- -nocursor' >> /home/sysop/.bashrc
+fi
