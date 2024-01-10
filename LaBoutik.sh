@@ -199,12 +199,17 @@ echo "----- Maj .chromium_env"
 #Maj .chromium_env
 echo "Maj .chromium_env"
 cp /home/sysop/serveurNfcNodeJs/chromium_env.exemple /home/sysop/serveurNfcNodeJs/.chromium_env
+echo "----creation .chromium_env OK"
 sed -i "/^hostname = */c hostname = $hostname" /home/sysop/serveurNfcNodeJs/.chromium_env
+echo "---- modif hostname OK"
 sed -i "/^front_type = */c front_type = $frontType" /home/sysop/serveurNfcNodeJs/.chromium_env
+echo "---- modif front_type OK"
 sed -i "/^password = */c password = $password" /home/sysop/serveurNfcNodeJs/.chromium_env
+echo "---- modif password OK"
 sed -i "/^token = */c token = $token" /home/sysop/serveurNfcNodeJs.chromium_env
+echo "---- modif token OK"
 sed -i "/^url = */c url = $protocole://$serveur/wv/login_hardware" /home/sysop/serveurNfcNodeJs/.chromium_env
-
+echo "---- modif url OK"
 #Autologin mode console
 raspi-config nonint do_boot_behaviour B2
 
