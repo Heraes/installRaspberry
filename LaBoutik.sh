@@ -198,6 +198,7 @@ npm install >> installation.log 2>&1
 echo "----- Maj .chromium_env"
 #Maj .chromium_env
 echo "Maj .chromium_env"
+cp /home/sysop/serveurNfcNodeJs/chromium_env.exemple /home/sysop/serveurNfcNodeJs/.chromium_env
 sed -i "/^hostname = */c hostname = $hostname" /home/sysop/serveurNfcNodeJs/.chromium_env
 sed -i "/^front_type = */c front_type = $frontType" /home/sysop/serveurNfcNodeJs/.chromium_env
 sed -i "/^password = */c password = $password" /home/sysop/serveurNfcNodeJs/.chromium_env
