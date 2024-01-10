@@ -206,7 +206,7 @@ sed -i "/^front_type = */c front_type = $frontType" /home/sysop/serveurNfcNodeJs
 echo "---- modif front_type OK"
 sed -i "/^password = */c password = $password" /home/sysop/serveurNfcNodeJs/.chromium_env
 echo "---- modif password OK"
-sed -i "/^token = */c token = $token" /home/sysop/serveurNfcNodeJs.chromium_env
+sed -i "/^token = */c token = $token" /home/sysop/serveurNfcNodeJs/.chromium_env
 echo "---- modif token OK"
 sed -i "/^url = */c url = $protocole://$serveur/wv/login_hardware" /home/sysop/serveurNfcNodeJs/.chromium_env
 echo "---- modif url OK"
