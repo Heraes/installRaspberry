@@ -117,17 +117,18 @@ echo "----- Configuration de config.txt"
 # Configuration de config.txt
 echo "display_rotate=$rotate" >> /boot/config.txt
 
+echo "install libpcsclite1"
+apt-get install libpcsclite1 -y >> installation.log 2>&1
+echo "install libpcsclite-dev"
+apt-get install libpcsclite-dev -y >> installation.log 2>&1
+echo "install pcscd"
+apt-get install pcscd -y >> installation.log 2>&1
+echo "install pcsc-tools"
+apt-get install pcsc-tools -y >> installation.log 2>&1
+
 echo "----- cas lecteur NFC USB"
 ###cas lecteur NFC USB
 if echo "$nfc" | grep -i "usb"; then
-    echo "install libpcsclite1"
-    apt-get install libpcsclite1 -y >> installation.log 2>&1
-    echo "install libpcsclite-dev"
-    apt-get install libpcsclite-dev -y >> installation.log 2>&1
-    echo "install pcscd"
-    apt-get install pcscd -y >> installation.log 2>&1
-    echo "install pcsc-tools"
-    apt-get install pcsc-tools -y >> installation.log 2>&1
     #Copie du fichier blacklist.conf (ne pas déscativer ses modules)
     rsync -a --backup --suffix=.bak ./blacklist.conf /etc/modprobe.d/blacklist.conf
     chown sysop:sysop /etc/modprobe.d/blacklist.conf
