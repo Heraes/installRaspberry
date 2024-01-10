@@ -152,9 +152,10 @@ fi
 #echo "----- install nodejs 18"
 #apt-get install nodejs -y >> installation.log 2>&1
 
-sudo apt-get install -y ca-certificates curl gnupg
+sudo apt-get install -y ca-certificates curl gnupg -y
 curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/nodesource.gpg
-NODE_MAJOR=18
+#NODE_MAJOR=18
+NODE_MAJOR=20
 echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
 #Maj des paquets
 sudo apt-get update -y
