@@ -6,16 +6,16 @@ import { spawn } from "child_process";
 import * as http from "http";
 
 // nfc ACR122U
-import { deviceEmitter } from "./jsModules/devices/acr122u.js";
+//import { deviceEmitter } from "./jsModules/devices/acr122u.js";
 // ou nfc VMA405
-//import { deviceEmitter } from "./jsModules/devices/vma405.js";
+import { deviceEmitter } from "./jsModules/devices/vma405.js";
 
 let script, ip, memSudoMdp = '', etatUrl = 0
 let TAB = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '!', '#', '$', '%', '&', '?', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 let max_TAB = TAB.length - 1
 let donneesFichierConfiguration = {}
 // type de lecteur nfc
-const typeLecteurNfc = 'acr122u'
+const typeLecteurNfc = 'vma405'
 // dev = 1 = mode développement
 let dev = 0
 
