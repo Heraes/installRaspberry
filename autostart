@@ -18,5 +18,5 @@ rm -fr /home/sysop/.config/chromium/Default/
 xrandr --output DSI-1 --rotate right
 
 # lance chromium avec un user agent spécifique hostname,password,periph,ip (provenant en partie de .chromium_env)
-cd /home/sysop/serveurNfcNodeJsVma405/
+cd /home/sysop/serveurNfcNodeJs/
 node serveur_nfc.js 
