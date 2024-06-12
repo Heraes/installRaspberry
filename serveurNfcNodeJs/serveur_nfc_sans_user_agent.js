@@ -1,7 +1,7 @@
 import {typeMime} from "./jsModules/typeMine.js";
 import * as os from "node:os";
 import * as fs from "node:fs";
-import * as IP from "ip";
+//import * as IP from "ip";
 import {spawn} from "child_process";
 import * as http from "http";
 
@@ -37,7 +37,12 @@ let fichier = '', contentType = ''
  * @returns {string}
  */
 function obtenirIp(typeReseau, famille) {
-  ip = IP.default.address(typeReseau, famille)
+  //ip = IP.default.address(typeReseau, famille)
+  http.get({'host':'api.ipify.org', 'port': 80, 'path': '/'}, function(resp) {
+    resp.on('data',function(myip) {
+        ip = myip
+        });
+  });
   let retour = "erreur"
   if (ip !== "127.0.0.1" && ip !== "0.0.0.0") {
     retour = ip
