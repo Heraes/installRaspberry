@@ -171,8 +171,12 @@ function afficherInfoServeur(donnees) {
  * @param {Number} nbMaxStderr - nombre maxi d'évènement Stderr avant de sortir de la fonction
  */
 function testUrl(url, nbMaxStderr) {
+  let posDeuxPoints = donneesFichierConfiguration.valeurs.url.indexOf(':')
+  let httpProtocol = donneesFichierConfiguration.valeurs.url.substring(0,posDeuxPoints)
+  let protocolPrefixUrl = httpProtocol+"://"
+  console.log(`-> Protocole URL ->${httpProtocol}<-`)
   console.log(`-> fonction testUrl, url = ->${url}<-`)
-  const prog = spawn('curl', ['-I', url])
+  const prog = spawn('curl', ['-I', protocolPrefixUrl+url])
   prog.nbMaxStderr = nbMaxStderr
   prog.nbStderr = 0
   prog.resultatRequete = "404"
@@ -465,7 +469,7 @@ token =  ${donnees.valeurs.token}
       fs.writeFileSync(".chromium_env", template)
       client_globale.emit('modificationServeur', {erreur: 0, serveurDomaine: serveur})
       testUrl(serveur, 14)
-      redemarrerChromium()
+      // redemarrerChromium() -- La méthode n'est pas définie
     } catch (error) {
       client_globale.emit('modificationServeur', {erreur: 1})
     }
