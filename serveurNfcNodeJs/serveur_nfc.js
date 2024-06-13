@@ -360,7 +360,7 @@ function lancerChromium(etape, dataFichier) {
       demChromium.on('close', (code) => {
         console.log(`demChromium - child process exited with code ${code}`)
         if (code === 0) {
-          console.log('--> Chromium démarrer !')
+          console.log('--> Chromium démarré !')
         }
       })
     }
@@ -438,7 +438,7 @@ function modifierConfigurationServeur(data) {
     serveur = data.serveurDomaine.toString().substring(1, (serveur.length - 1))
   }
 
-  donnees = obtenirConfigurationDunFichier(['hostname', 'token', 'password', 'front_type', 'url', 'mode_nfc'], './.chromium_env')
+  let donnees = obtenirConfigurationDunFichier(['hostname', 'token', 'password', 'front_type', 'url', 'mode_nfc'], './.chromium_env')
   if (donnees.erreur === 0) {
     let motDePasse = generer_mot_de_passe(16)
     if (data.genererMotDePasse === false) {
@@ -567,7 +567,7 @@ IO.use(function (socket, next) {
   if (token === TOKEN) {
     return next()
   } else {
-    next(new Error("ERREUR d'autentification !"))
+    next(new Error("ERREUR d'authentification !"))
   }
 })
 

@@ -43,7 +43,7 @@ setInterval(function() {
   // Get the UID of the card
   response = mfrc522.getUid();
   if (!response.status) {
-    deviceEmitter.emit('nfcReader', 'UID Scan Erro')
+    deviceEmitter.emit('nfcReader', 'UID Scan Error')
     return;
   }
 
